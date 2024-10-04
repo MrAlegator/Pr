@@ -25,7 +25,12 @@ rx-start() {
 
     read -p "Code: " host_input
 
-    command="DISPLAY=:0 /opt/google/chrome-remote-desktop/start-host --code=$host_input"
+    if [[ "$host_input" == "DISPLAY=/opt/google/chrome-remote-desktop/start-host --code="* ]]; then
+    command="$host_input"
+else
+    echo "Invalid format. Check SSH Debian Linux" 
+    exit 1
+    fi
 
     echo "Updating system and installing required packages..."
     sudo apt update && sudo apt upgrade -y
