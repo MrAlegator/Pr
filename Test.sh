@@ -12,6 +12,7 @@ rx-start() {
     echo "Remotix - A utility that allows you to install various add-ons in Linux"
     echo "1 - Linux (Virtual-Machine)                       3 - Linux (SSH-Port)"
     echo "2 - Linux (Parallel-Space)                        4 - Linux (Pkg-Codespace)"
+    echo "                                  5 - Exit                            "
 
     read -p "Select the desired option: " input
 
@@ -20,6 +21,7 @@ rx-start() {
         2) echo "You selected Linux (Parallel-Space)" ;;
         3) echo "You selected Linux (SSH-Port)" ;;
         4) echo "You selected Linux (Pkg-Codespace)" ;;
+        5) echo "Exiting..."; exit 0 ;;
         *) echo "Invalid selection. Please try again." && rx-start ;;
     esac
 
