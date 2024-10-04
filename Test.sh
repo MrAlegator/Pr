@@ -23,9 +23,9 @@ rx-start() {
         *) echo "Invalid selection. Please try again." && rx-start ;;
     esac
 
-    read -p "Code:" host_input
+    read -p "Code: " host_input
 
-    command="DISPLAY= /opt/google/chrome-remote-desktop/start-host --code=$host_input"
+    command="DISPLAY=:0 /opt/google/chrome-remote-desktop/start-host --code=$host_input"
 
     echo "Updating system and installing required packages..."
     sudo apt update && sudo apt upgrade -y
@@ -35,11 +35,10 @@ rx-start() {
     echo "Starting Chrome Remote Desktop host..."
     eval $command
     sudo bash -c 'echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session'
-    echo "export CHROME_REMOTE_DESKTOP_DEFAULT_DESKTOP_SIZES=1920x1080,1080x720" \
-    >> ~/.profile
+    echo "export CHROME_REMOTE_DESKTOP_DEFAULT_DESKTOP_SIZES=1920x1080,1080x720" >> ~/.profile
 
     echo "Setup complete!"
-    echo "Go https://remotedesktop.google.com/access/ enter password and use VM! 
+    echo "Go https://remotedesktop.google.com/access/ enter password and use VM!"
 }
 
 rx-start
