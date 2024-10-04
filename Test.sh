@@ -23,33 +23,23 @@ rx-start() {
         *) echo "Invalid selection. Please try again." && rx-start ;;
     esac
 
-    # Prompt for API input after selection
-    read -p "API: " api_input
+    read -p "Code:" host_input
 
-    # Prepend the DISPLAY command for Chrome Remote Desktop
-    command="DISPLAY= /opt/google/chrome-remote-desktop/start-host --code=$api_input"
+    command="DISPLAY= /opt/google/chrome-remote-desktop/start-host --code=$host_input"
 
-    # Execute system update and install XFCE and Chrome Remote Desktop
     echo "Updating system and installing required packages..."
     sudo apt update && sudo apt upgrade -y
-    sudo apt install xfce4 -y
-
-    # Download Chrome Remote Desktop package
+    sudo apt install xfce4 -y  
     wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb -P /tmp
-
-    # Install Chrome Remote Desktop package
     sudo apt install --assume-yes /tmp/chrome-remote-desktop_current_amd64.deb
-
-    # Execute the command entered by the user to start Chrome Remote Desktop host
     echo "Starting Chrome Remote Desktop host..."
     eval $command
-
-    # Install tmux as requested
-    echo "Installing tmux..."
-    sudo apt install tmux -y
+    sudo bash -c 'echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session'
+    echo "export CHROME_REMOTE_DESKTOP_DEFAULT_DESKTOP_SIZES=1920x1080,1080x720" \
+    >> ~/.profile
 
     echo "Setup complete!"
+    echo "Go https://remotedesktop.google.com/access/ enter password and use VM! 
 }
 
-# Main script execution starts here
 rx-start
