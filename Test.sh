@@ -20,7 +20,7 @@ rx-start() {
         2) echo "You selected Linux (Parallel-Space)" ;;
         3) echo "You selected Linux (SSH-Port)" ;;
         4) echo "You selected Linux (Pkg-Codespace)" ;;
-        *) echo "Invalid selection. Please try again." && rx-start ;;
+        *) echo "Invalid selection. Please try again." ;;
     esac
 
     read -p "Code: " host_input
