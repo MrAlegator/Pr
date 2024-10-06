@@ -28,7 +28,7 @@ rx-start() {
     echo "Google desktop SSH code required! Go to https://remotedesktop.google.com/access/ Select 'Setup via SSH', then Authorize. Copy the Debian Linux code and paste it below."
     read -p "Code:" host_input
 
-    if [[ "$host_input" == "DISPLAY=/opt/google/chrome-remote-desktop/start-host --code="* ]]; then
+    if [[ "$host_input" == "DISPLAY=/opt/google/chrome-remote-desktop/start-host"* ]]; then
     command="$host_input"
 else
     echo "Invalid format. Check SSH Debian Linux" 
